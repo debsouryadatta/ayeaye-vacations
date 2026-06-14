@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Message {
+  id                    String    @id @default(cuid())
+  provider              String
+  providerMessageId     String
+  providerEventType     String?
+  conversationSid       String
+  messagingServiceSid   String?
+  twilioMessageIndex    Int
+  author                String?
+  participantSid        String?
+  threadId              String
+  groupId               String
+  status                String    @default("QUEUED")
+  attempts              Int       @default(0)
+  maxAttempts           Int       @default(3)
+  lastError             String?
+  rawPayloadJson        String
+  normalizedMessageJson String
+  providerTimestamp     DateTime?
+  receivedAt            DateTime  @default(now())
+  processingStartedAt   DateTime?
+  processedAt           DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@unique([provider, providerMessageId])
+  @@unique([provider, conversationSid, twilioMessageIndex])
+  @@index([status, receivedAt])
+  @@index([status, providerTimestamp, receivedAt])
+  @@index([conversationSid, twilioMessageIndex])
+  @@index([threadId, twilioMessageIndex])
+}
+
+model Metric {
+  key       String   @id
+  value     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}

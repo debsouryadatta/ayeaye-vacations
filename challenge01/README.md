@@ -4,6 +4,12 @@ Standalone Node.js + TypeScript service for Assignment 1 of the REMI engineering
 
 The service accepts mock Twilio Conversations `onMessageAdded` webhook payloads, normalizes them into `RemiMessage`, stores raw and normalized payloads in SQLite through Prisma, prevents duplicate processing, preserves ordering per Conversation using Twilio message `Index`, handles media asynchronously, and exposes health/stats endpoints.
 
+## Architecture Diagram
+
+![Challenge 01 architecture diagram](architecture.png)
+
+Editable Excalidraw diagram: [`architecture.excalidraw`](architecture.excalidraw)
+
 ## Tech Stack
 
 - Node.js

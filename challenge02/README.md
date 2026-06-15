@@ -11,6 +11,14 @@ Built for **Aye Aye Vacations — Engineering Challenge #2**.
 
 ---
 
+## Architecture Diagram
+
+![Challenge 02 architecture diagram](architecture.png)
+
+Editable Excalidraw diagram: [`architecture.excalidraw`](architecture.excalidraw)
+
+---
+
 ## ✨ What it does
 
 | Area | Highlights |
